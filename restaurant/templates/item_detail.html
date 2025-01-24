@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="item-detail">
+    <img src="{{ item.image.url }}" alt="{{ item.name }}">
+    <h2>{{ item.name }}</h2>
+    <p>{{ item.description }}</p>
+    <h3>Available Sizes</h3>
+    <ul>
+        {% for size in item.sizes %}
+            <li>{{ size.name }} - ${{ size.price }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

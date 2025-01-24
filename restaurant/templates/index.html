@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="categories-container">
+    {% for category in categories %}
+        <h2 class="category-title">{{ category.name }}</h2>
+        <p class="category-description">{{ category.description }}</p>
+        <div class="subcategories">
+            {% for subcategory in category.subcategories.all %}
+                <h3 class="subcategory-title">{{ subcategory.name }}</h3>
+                <div class="items-grid">
+                    {% for item in subcategory.items.all %}
+                        <div class="item-card" onclick="openModal('{{ item.id }}')">
+                            <img src="{{ item.image.url }}" alt="{{ item.name }}" class="item-image">
+
+                            <h4 class="item-name">{{ item.name }}</h4>
+                            <p class="item-price">
+                                From {% if item.sizes.first %} ${{ item.sizes.first.price }} {% else %} N/A {% endif %}
+                            </p>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+</div>
+
+<!-- Modal -->
+<div id="item-modal" class="modal hidden">
+    <div class="modal-content">
+        <span class="close-button" onclick="closeModal()">×</span>
+        <div id="modal-body">
+            <!-- Content dynamically loaded via JavaScript -->
+        </div>
+    </div>
+</div>
+{% endblock %}
