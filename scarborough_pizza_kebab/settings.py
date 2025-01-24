@@ -24,6 +24,8 @@ SECRET_KEY = 'django-insecure-sx&^hd7kgvyrl^__6r^q=%2&riyrcgig6nz%dn*nyhi$q1%*+q
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+ALLOWED_HOSTS = ['your-render-subdomain.onrender.com', 'localhost']  # Add your Render domain
+
 
 ALLOWED_HOSTS = []
 
@@ -44,6 +46,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -67,7 +70,7 @@ TEMPLATES = [
         },
     },
 ]
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 WSGI_APPLICATION = 'scarborough_pizza_kebab.wsgi.application'
 
 

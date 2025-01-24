@@ -1,0 +1,1 @@
+web: gunicorn scarborough_pizza_kebab.wsgi:application
